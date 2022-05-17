@@ -1,4 +1,4 @@
-﻿namespace BibliotecaGestor.Models.Book
+﻿namespace BibliotecaGestor.Models
 {
     public class Book
     {
