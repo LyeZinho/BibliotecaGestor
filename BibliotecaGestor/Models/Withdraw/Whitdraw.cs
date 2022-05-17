@@ -64,7 +64,6 @@
         private int _id = 0;
         private int _iduser = 0;
         private int _idbook = 0;
-        private string _date = "";
 
         public whitdrawAuth SetId(int authId)
         {

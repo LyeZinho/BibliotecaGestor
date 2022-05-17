@@ -3,16 +3,16 @@ using BibliotecaGestor.Models.Database;
 
 
 
-MySqlConn conn = new MySqlConn();
-DapperDb dapper = new DapperDb().SetConection(conn.Conection());
+MySqlConector conector = new MySqlConector();
+BookData bookData = new BookData(conector.Conection());
+dynamic data = bookData.Get(1);
 
-dynamic data = dapper.Query("select_all_books");
+Console.WriteLine(data.GetTitle());
 
-foreach (var item in data)
-{
-    Console.WriteLine(item);
-}
-
+//foreach(var item in data)
+//{
+//    Console.WriteLine(item.GetAuthor());
+//}
 
 
 var builder = WebApplication.CreateBuilder(args);
