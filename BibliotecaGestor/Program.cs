@@ -1,21 +1,6 @@
 using BibliotecaGestor.Models.Database;
 
 
-
-
-MySqlConector conector = new MySqlConector();
-BookData bookData = new BookData(conector.Conection());
-
-bookData.Delete(2);
-
-dynamic data = bookData.GetAll();
-
-//foreach(var item in data)
-//{
-//    Console.WriteLine(item.GetAuthor());
-//}
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

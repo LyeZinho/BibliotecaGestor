@@ -57,14 +57,14 @@ namespace BibliotecaGestor.Models.Database
 
         public dynamic Get(int id)
         {
-            string procedule = "select_all_books";
+            string procedule = "select_book";
             try
             {
                 using (_conection)
                 {
                     dynamic result = _conection.QueryFirst<Book>(
                         procedule,
-                        new { select_book = id},
+                        new { id },
                         commandType: CommandType.StoredProcedure
                         );
                     return result;
@@ -98,9 +98,30 @@ namespace BibliotecaGestor.Models.Database
             }
         }
 
+        //Não testado
         public void Insert(Book book)
         {
-            Console.WriteLine("sss");
+            string procedule = "insert_book";
+            try
+            {
+                using (_conection)
+                {
+                    dynamic result = _conection.Query<Book>(
+                        procedule, new
+                        {
+                            title = book.GetTitle(),
+                            author = book.GetAuthor(),
+                            isbn = book.GetIsbn(),
+                            publisher = book.GetPublisher()
+                        },
+                        commandType: CommandType.StoredProcedure
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
