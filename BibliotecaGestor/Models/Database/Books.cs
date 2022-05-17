@@ -37,7 +37,22 @@ namespace BibliotecaGestor.Models.Database
         
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string procedule = "delete_book";
+            try
+            {
+                using (_conection)
+                {
+                    dynamic result = _conection.QueryFirst<Book>(
+                        procedule,
+                        new { id },
+                        commandType: CommandType.StoredProcedure
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public dynamic Get(int id)
@@ -85,7 +100,7 @@ namespace BibliotecaGestor.Models.Database
 
         public void Insert(Book book)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("sss");
         }
     }
 }

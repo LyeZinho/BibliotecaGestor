@@ -5,9 +5,10 @@ using BibliotecaGestor.Models.Database;
 
 MySqlConector conector = new MySqlConector();
 BookData bookData = new BookData(conector.Conection());
-dynamic data = bookData.Get(1);
 
-Console.WriteLine(data.GetTitle());
+bookData.Delete(2);
+
+dynamic data = bookData.GetAll();
 
 //foreach(var item in data)
 //{
