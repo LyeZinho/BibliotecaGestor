@@ -33,7 +33,7 @@
         {
             return ZipCode;
         }
-        
+
         public User SetCredentials(string setName, string setEmail)
         {
             this.Name = setName;
@@ -61,7 +61,7 @@
                 SetName(this.Name).
                 SetEmail(this.Email).
                 SetPhone(this.Phone);
-            
+
             if (auth.Validate())
             {
                 return this;
