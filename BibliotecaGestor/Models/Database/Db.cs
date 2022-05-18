@@ -9,12 +9,13 @@ using System.Data;
 
 namespace BibliotecaGestor.Models.Database
 {
-    public interface IBookData
+    public interface IData
     {
         public dynamic Get(int id);
         public dynamic GetAll();
-        public void Insert(Book book);
+        public void Insert(dynamic param);
         public void Delete(int id);
+        public void Update(dynamic param);
     }
 
     public class MySqlConector 
@@ -28,11 +29,11 @@ namespace BibliotecaGestor.Models.Database
     }
 
     //Abstração para todas as classes IBookData
-    public class database : IBookData
+    public class database : IData
     {
-        IBookData _datacontroller;
+        IData _datacontroller;
 
-        public database(IBookData datacontroller)
+        public database(IData datacontroller)
         {
             _datacontroller = datacontroller;
         }
@@ -54,15 +55,20 @@ namespace BibliotecaGestor.Models.Database
             return data;
         }
 
-        public void Insert(Book book)
+        public void Insert(dynamic param)
         {
-            _datacontroller.Insert(book);
+            _datacontroller.Insert(param);
+        }
+
+        public void Update(dynamic param)
+        {
+            _datacontroller.Update(param);
         }
     }
 
 
 
-    public class BookData : IBookData
+    public class BookData : IData
     {
         private IDbConnection _conection;
         public BookData(IDbConnection conection)
@@ -133,7 +139,7 @@ namespace BibliotecaGestor.Models.Database
             }
         }
 
-        public void Insert(Book book)
+        public void Insert(dynamic param)
         {
             string procedule = "insert_book";
             try
@@ -143,10 +149,10 @@ namespace BibliotecaGestor.Models.Database
                     dynamic result = _conection.Query<Book>(
                         procedule, new
                         {
-                            title = book.GetIdBook(),
-                            author = book.GetAuthor(),
-                            isbn = book.GetIsbn(),
-                            publisher = book.GetPublisher()
+                            title = param.GetIdBook(),
+                            author = param.GetAuthor(),
+                            isbn = param.GetIsbn(),
+                            publisher = param.GetPublisher()
                         },
                         commandType: CommandType.StoredProcedure
                         );
@@ -158,7 +164,7 @@ namespace BibliotecaGestor.Models.Database
             }
         }
 
-        public void Update(Book book)
+        public void Update(dynamic param)
         {
             string procedule = "update_book";
             try
@@ -168,14 +174,15 @@ namespace BibliotecaGestor.Models.Database
                     dynamic result = _conection.Query<Book>(
                         procedule, new
                         {
-                            id = book.GetIdBook(),
-                            title = book.GetTitle(),
-                            author = book.GetAuthor(),
-                            isbn = book.GetIsbn(),
-                            publisher = book.GetPublisher()
+                            id = param.GetIdBook(),
+                            title = param.GetTitle(),
+                            author = param.GetAuthor(),
+                            isbn = param.GetIsbn(),
+                            publisher = param.GetPublisher()
                         },
                         commandType: CommandType.StoredProcedure
                         );
+                    Console.WriteLine(result.ToString());
                 }
             }
             catch (Exception ex)
@@ -185,7 +192,7 @@ namespace BibliotecaGestor.Models.Database
         }
     }
 
-    public class UserData
+    public class UserData : IData
     {
         private IDbConnection _conection;
         public UserData(IDbConnection conection)
@@ -213,7 +220,7 @@ namespace BibliotecaGestor.Models.Database
             }
         }
 
-        public void Insert(User user)
+        public void Insert(dynamic param)
         {
             string procedule = "insert_user";
             try
@@ -223,10 +230,10 @@ namespace BibliotecaGestor.Models.Database
                     dynamic result = _conection.Query<Book>(
                         procedule, new
                         {
-                            name = user.GetName(),
-                            email = user.GetEmail(),
-                            phone = user.GetPhone(),
-                            zipcode = user.GetZipCode()
+                            name = param.GetName(),
+                            email = param.GetEmail(),
+                            phone = param.GetPhone(),
+                            zipcode = param.GetZipCode()
                         },
                         commandType: CommandType.StoredProcedure
                         );
@@ -281,7 +288,7 @@ namespace BibliotecaGestor.Models.Database
             }
         }
 
-        public void  Update(User user)
+        public void  Update(dynamic param)
         {
             string procedule = "update_book";
             try
@@ -291,11 +298,11 @@ namespace BibliotecaGestor.Models.Database
                     dynamic result = _conection.Query<Book>(
                         procedule, new
                         {
-                            id = user.GetId(),
-                            name = user.GetName(),
-                            email = user.GetEmail(),
-                            phone = user.GetPhone(),
-                            zipcode = user.GetZipCode()  
+                            id = param.GetId(),
+                            name = param.GetName(),
+                            email = param.GetEmail(),
+                            phone = param.GetPhone(),
+                            zipcode = param.GetZipCode()  
                         },
                         commandType: CommandType.StoredProcedure
                         );

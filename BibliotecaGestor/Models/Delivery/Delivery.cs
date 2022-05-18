@@ -1,4 +1,5 @@
-﻿namespace BibliotecaGestor.Models
+﻿namespace BibliotecaGestor.Models 
+{ 
     public class Delivery
     {
         private int Iddelivery = 0;
