@@ -205,7 +205,7 @@ namespace BibliotecaGestor.Models.Database
             {
                 using (_conection)
                 {
-                    dynamic result = _conection.QueryFirst<Book>(
+                    dynamic result = _conection.QueryFirst<User>(
                         procedule,
                         new { id },
                         commandType: CommandType.StoredProcedure
@@ -225,7 +225,7 @@ namespace BibliotecaGestor.Models.Database
             {
                 using (_conection)
                 {
-                    dynamic result = _conection.Query<Book>(
+                    dynamic result = _conection.Query<User>(
                         procedule, new
                         {
                             name = param.GetName(),
@@ -250,7 +250,7 @@ namespace BibliotecaGestor.Models.Database
             {
                 using (_conection)
                 {
-                    dynamic result = _conection.QueryFirst<Book>(
+                    dynamic result = _conection.QueryFirst<User>(
                         procedule,
                         new { id },
                         commandType: CommandType.StoredProcedure
@@ -261,7 +261,7 @@ namespace BibliotecaGestor.Models.Database
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return new Book();
+                return new User();
             }
         }
 
@@ -272,7 +272,7 @@ namespace BibliotecaGestor.Models.Database
             {
                 using (_conection)
                 {
-                    dynamic result = _conection.Query<Book>(
+                    dynamic result = _conection.Query<User>(
                         procedule,
                         commandType: CommandType.StoredProcedure
                         );
@@ -282,7 +282,7 @@ namespace BibliotecaGestor.Models.Database
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return new Book();
+                return new User();
             }
         }
 
@@ -293,7 +293,7 @@ namespace BibliotecaGestor.Models.Database
             {
                 using (_conection)
                 {
-                    dynamic result = _conection.Query<Book>(
+                    dynamic result = _conection.Query<User>(
                         procedule, new
                         {
                             id = param.GetId(),

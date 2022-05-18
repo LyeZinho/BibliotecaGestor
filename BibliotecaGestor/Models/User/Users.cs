@@ -7,13 +7,13 @@
         1. Builder
         2. SRP (Single Responsibility Principle)
         */
-        private int Iduser { get; set; }
-        private string Name { get; set; }
-        private string Email { get; set; }
-        private int Phone { get; set; }
-        private string ZipCode { get; set; }
+        public int Iduser { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public int Phone { get; set; }
+        public string ZipCode { get; set; }
 
-        User()
+        public User()
         {
             Iduser = 0;
             Name = "";
