@@ -2,14 +2,14 @@
 {
     public class Whitdraw
     {
-        private int Id = 0;
+        private int Idwithdraw = 0;
         private int IdUser = 0;
         private int IdBook = 0;
         private string Date = "";
         
         public int GetId() 
         {
-            return Id;
+            return Idwithdraw;
         }
         public int GetIdUser()
         {
@@ -31,7 +31,7 @@
         }
         public Whitdraw SetWhitdrawid(int id)
         {
-            Id = id;
+            Idwithdraw = id;
             return this;
         }
         public Whitdraw SetBookid(int id)
@@ -47,7 +47,7 @@
         public Whitdraw Build()
         {
             whitdrawAuth auth = new whitdrawAuth();
-            auth.SetId(Id).
+            auth.SetId(Idwithdraw).
                  SetIdBook(IdBook).
                  SetIdUser(IdUser);
             

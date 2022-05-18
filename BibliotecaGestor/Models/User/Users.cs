@@ -1,4 +1,4 @@
-﻿namespace BibliotecaGestor.Models.User
+﻿namespace BibliotecaGestor.Models
 {
     public class User
     {
@@ -7,7 +7,7 @@
         1. Builder
         2. SRP (Single Responsibility Principle)
         */
-        private int Id = 0;
+        private int Iduser = 0;
         private string Name = "";
         private string Email = "";
         private int Phone = 0;
@@ -15,7 +15,7 @@
 
         public int GetId()
         {
-            return Id;
+            return Iduser;
         }
         public string GetName()
         {
@@ -52,7 +52,7 @@
         }
         public User SetId(int setId)
         {
-            this.Id = setId;
+            this.Iduser = setId;
             return this;
         }
         public User Build()

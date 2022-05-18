@@ -1,15 +1,14 @@
-﻿namespace BibliotecaGestor.Models.Delivery
-{
+﻿namespace BibliotecaGestor.Models
     public class Delivery
     {
-        private int Id = 0;
+        private int Iddelivery = 0;
         private int IdUser = 0;
         private int IdBook = 0;
         private string Date = "";
 
         public int GetId()
         {
-            return Id;
+            return Iddelivery;
         }
         public int GetIdUser()
         {
@@ -26,7 +25,7 @@
 
         public Delivery SetDeliveryId(int id)
         {
-            Id = id;
+            Iddelivery = id;
             return this;
         }
         public Delivery SetUserId(int idUser)
@@ -47,7 +46,7 @@
         public Delivery Build()
         {
             authDelivery auth = new authDelivery().
-                SetId(Id).
+                SetId(Iddelivery).
                 SetIdUser(IdUser).
                 SetIdBook(IdBook);
             

@@ -1,16 +1,16 @@
 ﻿namespace BibliotecaGestor.Models
-{
+{ 
     public class Book
     {
-        private int Id = 0;
-        private string Title = "";
-        private string Author = "";
-        private string Isbn = "";
-        private string Publisher = "";
+        public int Idbook = 0;
+        public string Title = "";
+        public string Author = "";
+        public string Isbn = "";
+        public string Publisher = "";
 
         public int GetIdBook()
         {
-            return Id;
+            return Idbook;
         }
         public string GetTitle()
         {
@@ -43,7 +43,7 @@
         }
         public Book SetId(int id)
         {
-            Id = id;
+            Idbook = id;
             return this;
         }
         public Book Build()
@@ -52,7 +52,7 @@
                 SetTitle(Title).
                 SetAuthor(Author).
                 SetIsbn(Isbn);
-            
+
             if (auth.Validate())
             {
                 return this;
@@ -60,7 +60,7 @@
             return new Book();
         }
     }
-    
+
     public class authBook : Book
     {
         private string _title = "";
