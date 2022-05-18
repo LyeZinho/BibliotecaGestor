@@ -11,6 +11,22 @@ namespace BibliotecaGestor.Controllers
             return View();
         }
 
+        // - Criar -
+        public IActionResult Criar()
+        {
+            return View();
+        }
+
+        [HttpPost] 
+        public IActionResult Criar(Book book)
+        {
+            MySqlConector conector = new MySqlConector();
+            database db = new database(
+                new BookData(conector.Conection())
+            );
+            db.Insert(book);
+            return View();
+        }        
         
         // - Deletar -
         public IActionResult Deletar(int id)
