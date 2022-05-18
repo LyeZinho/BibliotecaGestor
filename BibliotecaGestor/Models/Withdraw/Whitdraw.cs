@@ -2,91 +2,17 @@
 {
     public class Whitdraw
     {
-        private int Idwithdraw = 0;
-        private int IdUser = 0;
-        private int IdBook = 0;
-        private string Date = "";
-        
-        public int GetId() 
-        {
-            return Idwithdraw;
-        }
-        public int GetIdUser()
-        {
-            return IdUser;
-        }
-        public int GetIdBook()
-        {
-            return IdBook;
-        }
-        public string GetDate()
-        {
-            return Date;
-        }
+        private int Idwithdraw { get; set; }
+        private int IdUser { get; set; }
+        private int IdBook { get; set; }
+        private string Date { get; set; }
 
-        public Whitdraw SetUserid(int id)
+        Whitdraw()
         {
-            IdUser = id;
-            return this;
-        }
-        public Whitdraw SetWhitdrawid(int id)
-        {
-            Idwithdraw = id;
-            return this;
-        }
-        public Whitdraw SetBookid(int id)
-        {
-            IdBook = id;
-            return this;
-        }
-        public Whitdraw SetDate()
-        {
-            Date = DateTime.Now.ToString("[ yyyy-MM-dd | HH:mm:ss ]");
-            return this;
-        }
-        public Whitdraw Build()
-        {
-            whitdrawAuth auth = new whitdrawAuth();
-            auth.SetId(Idwithdraw).
-                 SetIdBook(IdBook).
-                 SetIdUser(IdUser);
-            
-            if (auth.Validate())
-            {
-                return this;
-            }
-            return new Whitdraw();
-        }
-    }
-
-    public class whitdrawAuth : Whitdraw 
-    {
-        private int _id = 0;
-        private int _iduser = 0;
-        private int _idbook = 0;
-
-        public whitdrawAuth SetId(int authId)
-        {
-            _id = authId;
-            return this;
-        }
-        public whitdrawAuth SetIdUser(int authId)
-        {
-            _iduser = authId;
-            return this;
-        }
-        public whitdrawAuth SetIdBook(int authId)
-        {
-            _idbook = authId;
-            return this;
-        }
-        public bool Validate()
-        {
-            if (_id == 0 || _iduser == 0 || _idbook == 0)
-            {
-                return false;
-            }
-            return true;
+            Idwithdraw = 0;
+            IdUser = 0;
+            IdBook = 0;
+            Date = "";
         }
     }
 }

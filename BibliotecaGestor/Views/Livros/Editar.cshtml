@@ -1,0 +1,31 @@
+﻿@model BibliotecaGestor.Models.Book
+
+<h1> Editar </h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editar" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <input type="hidden" class="form-control" asp-for=Idbook required>
+            <br>
+            <input type="text" class="form-control" asp-for=Title placeholder="Insira o titulo" required>
+            <br>
+            <input type="text" class="form-control" asp-for=Author placeholder="Insira o autor" required>
+            <br>            
+            <input type="text" class="form-control" asp-for=Publisher placeholder="Insira a editora" required>
+            <br>
+            <input type="text" class="form-control" asp-for=Isbn placeholder="Insira o isbn" required>
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" /> | <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

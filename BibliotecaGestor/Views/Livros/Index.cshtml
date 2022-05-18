@@ -1,0 +1,41 @@
+﻿@using BibliotecaGestor.Models.Database;
+@using BibliotecaGestor.Models;
+@model Book;
+
+<table class="table">
+    <thead>
+            <tr>
+                <th>#</th>
+                <th>Titulo</th>
+                <th>Atuor</th>
+                <th>Isbn</th>
+                <th>Editora</th>
+            </tr>
+    </thead>
+    <tbody style="overflow-y:auto">
+        @{
+            MySqlConector conector = new MySqlConector();
+            database db = new database(
+                new BookData(conector.Conection())
+            );
+            var books = db.GetAll();
+            foreach (var item in books)
+            {
+                <tr>
+                    <td>@item.Idbook</td>
+                    <td>@item.Title</td>
+                    <td>@item.Author</td>
+                    <td>@item.Isbn</td>
+                    <td>@item.Publisher</td>
+                    <td>
+                       <div class="btn-group btn-group-sm" role="group" >
+                         <a role="button" class="btn btn-primary" asp-route-id="@item.Idbook" asp-controller="Livros" asp-action="Editar">Editar</a>
+                         <a role="button" class="btn btn-danger" asp-route-id="@item.Idbook" asp-controller="Livros" asp-action="Deletar">Remover</a>
+                         <a role="button" class="btn btn-info" asp-route-id="@item.Idbook" asp-controller="Livros" asp-action="index">Vendas</a>
+                       </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

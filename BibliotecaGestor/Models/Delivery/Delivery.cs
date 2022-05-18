@@ -2,94 +2,17 @@
 { 
     public class Delivery
     {
-        private int Iddelivery = 0;
-        private int IdUser = 0;
-        private int IdBook = 0;
-        private string Date = "";
+        public int Iddelivery { get; set; }
+        public int IdUser { get; set; }
+        public int IdBook { get; set; }
+        public string Date { get; set; }
 
-        public int GetId()
+        Delivery()
         {
-            return Iddelivery;
-        }
-        public int GetIdUser()
-        {
-            return IdUser;
-        }
-        public int GetIdBook()
-        {
-            return IdBook;
-        }
-        public string GetDate()
-        {
-            return Date;
-        }
-
-        public Delivery SetDeliveryId(int id)
-        {
-            Iddelivery = id;
-            return this;
-        }
-        public Delivery SetUserId(int idUser)
-        {
-            IdUser = idUser;
-            return this;
-        }
-        public Delivery SetBookId(int idBook)
-        {
-            IdBook = idBook;
-            return this;
-        }
-        public Delivery SetDate()
-        {
-            Date = DateTime.Now.ToString("[ yyyy-MM-dd | HH:mm:ss ]");
-            return this;
-        }
-        public Delivery Build()
-        {
-            authDelivery auth = new authDelivery().
-                SetId(Iddelivery).
-                SetIdUser(IdUser).
-                SetIdBook(IdBook);
-            
-            if (auth.Validate())
-            {
-                return this;
-            }
-            return new Delivery();
-        }
-    }
-
-    public class authDelivery : Delivery
-    {
-        private int _id = 0;
-        private int _idduser = 0;
-        private int _idbook = 0;
-
-        public authDelivery SetId(int authId)
-        {
-            _id = authId;
-            return this;
-        }
-        public authDelivery SetIdUser(int authIdUser)
-        {
-            _idduser = authIdUser;
-            return this;
-        }
-        public authDelivery SetIdBook(int authIdBook)
-        {
-            _idbook = authIdBook;
-            return this;
-        }
-        public bool Validate()
-        {
-            if (_id == 0 || _idduser == 0 || _idbook == 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            Iddelivery = 0;
+            IdUser = 0;
+            IdBook = 0;
+            Date = "";
         }
     }
 }

@@ -66,8 +66,6 @@ namespace BibliotecaGestor.Models.Database
         }
     }
 
-
-
     public class BookData : IData
     {
         private IDbConnection _conection;
@@ -149,10 +147,10 @@ namespace BibliotecaGestor.Models.Database
                     dynamic result = _conection.Query<Book>(
                         procedule, new
                         {
-                            title = param.GetIdBook(),
-                            author = param.GetAuthor(),
-                            isbn = param.GetIsbn(),
-                            publisher = param.GetPublisher()
+                            title = param.Title,
+                            author = param.Author,
+                            isbn = param.Isbn,
+                            publisher = param.Publisher
                         },
                         commandType: CommandType.StoredProcedure
                         );
@@ -174,11 +172,11 @@ namespace BibliotecaGestor.Models.Database
                     dynamic result = _conection.Query<Book>(
                         procedule, new
                         {
-                            id = param.GetIdBook(),
-                            title = param.GetTitle(),
-                            author = param.GetAuthor(),
-                            isbn = param.GetIsbn(),
-                            publisher = param.GetPublisher()
+                            id = param.Idbook,
+                            title = param.Title,
+                            author = param.Author,
+                            isbn = param.Isbn,
+                            publisher = param.Publisher
                         },
                         commandType: CommandType.StoredProcedure
                         );
