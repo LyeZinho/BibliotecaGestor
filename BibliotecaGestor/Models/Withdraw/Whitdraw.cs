@@ -1,13 +1,13 @@
-﻿namespace BibliotecaGestor.Models.Withdraw
+﻿namespace BibliotecaGestor.Models
 {
-    public class Whitdraw
+    public class Wihtdraw
     {
-        private int Idwithdraw { get; set; }
-        private int IdUser { get; set; }
-        private int IdBook { get; set; }
-        private string Date { get; set; }
+        public int Idwithdraw { get; set; }
+        public int IdUser { get; set; }
+        public int IdBook { get; set; }
+        public string Date { get; set; }
 
-        Whitdraw()
+        public Wihtdraw()
         {
             Idwithdraw = 0;
             IdUser = 0;

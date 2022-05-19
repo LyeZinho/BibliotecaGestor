@@ -7,6 +7,8 @@ using MySql.Data.MySqlClient;
 using Dapper;
 using System.Data;
 
+
+
 namespace BibliotecaGestor.Models.Database
 {
     public interface IData
@@ -228,10 +230,10 @@ namespace BibliotecaGestor.Models.Database
                     dynamic result = _conection.Query<User>(
                         procedule, new
                         {
-                            name = param.GetName(),
-                            email = param.GetEmail(),
-                            phone = param.GetPhone(),
-                            zipcode = param.GetZipCode()
+                            name = param.Name,
+                            email = param.Email,
+                            phone = param.Phone,
+                            zipcode = param.ZipCode
                         },
                         commandType: CommandType.StoredProcedure
                         );
@@ -288,19 +290,132 @@ namespace BibliotecaGestor.Models.Database
 
         public void  Update(dynamic param)
         {
-            string procedule = "update_book";
+            string procedule = "update_user";
             try
             {
                 using (_conection)
                 {
-                    dynamic result = _conection.Query<User>(
+                    dynamic result = _conection.Execute(
                         procedule, new
                         {
-                            id = param.GetId(),
-                            name = param.GetName(),
-                            email = param.GetEmail(),
-                            phone = param.GetPhone(),
-                            zipcode = param.GetZipCode()  
+                            id = param.Iduser,
+                            name = param.Name,
+                            email = param.Email,
+                            phone = param.Phone,
+                            zipcode = param.ZipCode
+                        },
+                        commandType: CommandType.StoredProcedure
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
+
+    public class WithdrawData : IData
+    {
+        private IDbConnection _conection;
+        public WithdrawData(IDbConnection conection)
+        {
+            this._conection = conection;
+        }
+
+        public void Delete(int id)
+        {
+
+            string procedule = "delete_withdraw";
+            try
+            {
+                using (_conection)
+                {
+                    dynamic result = _conection.Execute(
+                        procedule,
+                        new { id },
+                        commandType: CommandType.StoredProcedure
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public dynamic Get(int id)
+        {
+            string procedule = "update_withdraw";
+            try
+            {
+                var param = new Wihtdraw();
+                param.Idwithdraw = id;
+                using (_conection)
+                {
+                    dynamic result = _conection.Query<Wihtdraw>(
+                        procedule, new
+                        {
+                            id = param.Idwithdraw,
+                            users_iduser = param.IdUser,
+                            books_idbook = param.IdBook,
+                            withdraw_date = param.Date
+                        },
+                        commandType: CommandType.StoredProcedure
+                        );
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new Wihtdraw();
+            }
+        }
+
+        public dynamic GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(dynamic param)
+        {
+            string procedule = "insert_whitdraw";
+            try
+            {
+                using (_conection)
+                {
+                    dynamic result = _conection.Execute(
+                        procedule, new
+                        {
+                            users_iduser = param.IdUser,
+                            books_idbook = param.IdBook,
+                            withdraw_date = param.Date         
+                        },
+                        commandType: CommandType.StoredProcedure
+                        );
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public void Update(dynamic param)
+        {
+            string procedule = "update_withdraw";
+            try
+            {
+                using (_conection)
+                {
+                    dynamic result = _conection.Execute(
+                        procedule, new
+                        {
+                            id = param.Idwithdraw,
+                            users_iduser = param.IdUser,
+                            books_idbook = param.IdBook,
+                            withdraw_date = param.Date
                         },
                         commandType: CommandType.StoredProcedure
                         );

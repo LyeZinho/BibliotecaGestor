@@ -1,6 +1,18 @@
 using BibliotecaGestor.Models.Database;
 using BibliotecaGestor.Models;
 
+MySqlConector conn = new MySqlConector();
+database db = new database(
+    new WithdrawData(conn.Conection())
+);
+db.Update(new {
+    Idwithdraw = 6,
+    IdUser = 2,
+    IdBook = 11,
+    Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+});
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
